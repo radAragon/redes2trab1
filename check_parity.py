@@ -77,11 +77,9 @@ with open(args.filepath, 'rb') as arq_origem:
             elif (len(col_err) + len(lin_err)) == 1:
                 print('Erro: bloco com erro parcial, impossível corrigir')
             elif (len(col_err) + len(lin_err)) == 2:
-                print('Corrigindo bit', lin_err[0], col_err[0])
-                if dados_matriz[lin_err][col_err] == 1:
-                    dados_matriz[lin_err][col_err] = 0
-                else:
-                    dados_matriz[lin_err][col_err] = 1
+                print('Erro: bloco com erro simples')
+                print('Corrigindo bit (%d, %d)' % (col_err[0], lin_err[0]))
+                dados_matriz[lin_err[0]][col_err[0]] ^= 1
 
             for x in range(len(dados)):
                 bits = ''.join([str(y) for y in dados_matriz[x]])
